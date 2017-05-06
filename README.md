@@ -1,6 +1,6 @@
 # JSON verifier
 
-The rule which help to verify JSON returned by REST services (Spring, JAX-RS, etc).
+The rule which helps to verify JSON returned by REST services (Spring, JAX-RS, etc).
 Just put *.json file to json/TestClassName/testMethodName/ directory and the rule will compare response
 of the service to this file.
 
@@ -18,7 +18,10 @@ class name and on a method name.
 @SpringBootTest(classes = UserQueryServiceApplication.class)
 public class UserControllerTest {
 
-    // ...
+    @Rule
+    public JsonContentVerifier jsonContentVerifier = new JsonContentVerifier();
+    
+    // ..
 
     @Test
     public void testGetUserWithoutFriendsWithoutExpandParam() throws Exception {
