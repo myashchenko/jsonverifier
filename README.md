@@ -1,6 +1,15 @@
 # JSON verifier
 
-The rules which help to verify JSON returned by REST services (Spring, JAX-RS, etc).
+The rule which help to verify JSON returned by REST services (Spring, JAX-RS, etc).
+Just put *.json file to json/TestClassName/testMethodName/ directory and the rule will compare response
+of the service to this file.
+
+## Motivation
+
+During writing the tests for REST services I saw that there are a lot of hardcoded JSON into test classes. 
+I think that it's very bad practice and we should avoid hard coding. The better way is to save expected JSON content 
+into the files from a classpath. Besides, we can automatically generate a path to this files based on a test 
+class name and on a method name.
 
 ## Code Example
 
@@ -21,13 +30,6 @@ public class UserControllerTest {
     }
 }
 ```
-
-## Motivation
-
-During writing the tests for REST services I saw that there are a lot of hardcoded JSON into test classes. 
-I think that it's very bad practice and we should avoid hard coding. The better way is to save expected JSON content 
-into the files from a classpath. Besides, we can automatically generate a path to this files based on a test 
-class name and on a method name.
 
 ## Installation
 
