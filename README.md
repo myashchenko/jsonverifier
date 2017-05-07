@@ -41,7 +41,7 @@ Add following dependency to pom.xml
 <dependency>
     <groupId>io.github.yashchenkon</groupId>
     <artifactId>json-verifier</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 ## Tests

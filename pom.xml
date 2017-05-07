@@ -6,7 +6,38 @@
 
     <groupId>io.github.yashchenkon</groupId>
     <artifactId>json-verifier</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+    <name>JSON Verifier</name>
+    <description>The rule which helps to verify JSON returned by REST services (Spring, JAX-RS, etc).</description>
+    <url>https://github.io/yashchenkon/jsonverifier</url>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://github.io/yashchenkon/jsonverifier/LICENSE.txt</url>
+            <distribution>site</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Mykola Yashchenko</name>
+            <email>vkont4@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/yashchenkon/jsonverifier/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:git@github.com:yashchenkon/jsonverifier.git</connection>
+        <developerConnection>scm:git:git@github.com:yashchenkon/jsonverifier.git</developerConnection>
+        <url>https://github.com/yashchenkon/jsonverifier</url>
+    </scm>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -75,6 +106,31 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
