@@ -1,8 +1,9 @@
 # JSON verifier
 
 The rule which helps to verify JSON returned by REST services (Spring, JAX-RS, etc).
+It allows you to hide paths to the files with JSON completely.
 Just put *.json file to json/TestClassName/testMethodName/ directory and the rule will compare response
-of the service to this file.
+of the service to this file. Another option is JSON matcher that can be used to compare JSON objects.
 
 ## Motivation
 
@@ -13,6 +14,9 @@ class name and on a method name.
 
 ## Code Example
 
+There are two options:
+
+1) Using rule
 ```java
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UserQueryServiceApplication.class)
@@ -34,6 +38,28 @@ public class UserControllerTest {
 }
 ```
 
+2) Using JSON matcher
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = UserQueryServiceApplication.class)
+public class UserControllerTest {
+
+    @Rule
+    public JsonContentLoader jsonContentLoader = new JsonContentLoader();
+    
+    // ..
+
+    @Test
+    public void testGetUserWithoutFriendsWithoutExpandParam() throws Exception {
+        String responseBody = mockMvc.perform(get("/users/1").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse().getContentAsString();
+        assertThat(responseBody, JsonMatcher.json(jsonContentLoader.load()));
+    }
+}
+```
+
 ## Installation
 
 Add following dependency to pom.xml
@@ -46,7 +72,7 @@ Add following dependency to pom.xml
 ```
 ## Tests
 
-Will be added later.
+Description will be added later.
 
 ## Contributors
 
@@ -54,4 +80,4 @@ Please, create pull requests in case of any fixes.
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+MIT

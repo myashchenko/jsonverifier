@@ -23,6 +23,7 @@ import java.nio.charset.Charset;
  *         &#064;Test
  *         public void test() {
  *             String json = jsonContentLoader.load("request");
+ *             // verify
  *         }
  *     }
  * </pre>
@@ -36,7 +37,7 @@ public class JsonContentLoader extends TestWatcher {
     /**
      * default file name {@value} to use for {@link #load()}
      */
-    private static final String DEFAULT_FILE_NAME = "request";
+    private static final String DEFAULT_FILE_NAME = "response";
 
     /**
      * template of the path to the file
